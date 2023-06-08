@@ -235,37 +235,12 @@ resource "aws_cloudtrail" "global" {
   cloud_watch_logs_role_arn     = var.cloudwatch_logs_enabled ? aws_iam_role.cloudwatch_delivery[0].arn : null
   enable_log_file_validation    = true
   include_global_service_events = true
-  is_multi_region_trail         = false # TODO: GovCloud Doesn't support multi region
+  is_multi_region_trail         = true
   is_organization_trail         = var.is_organization_trail
   kms_key_id                    = aws_kms_key.cloudtrail.arn
   s3_bucket_name                = var.s3_bucket_name
   s3_key_prefix                 = var.s3_key_prefix
   sns_topic_name                = var.cloudtrail_sns_topic_enabled ? aws_sns_topic.cloudtrail-sns-topic[0].arn : null
-
-  event_selector {
-    read_write_type           = "All"
-    include_management_events = true
-
-    data_resource {
-      type   = "AWS::S3::Object"
-      values = var.s3_object_level_logging_buckets
-    }
-  }
-
-  event_selector {
-    read_write_type           = "All"
-    include_management_events = true
-
-    data_resource {
-      type   = "AWS::DynamoDB::Table"
-      values = var.dynamodb_event_logging_tables
-    }
-
-    data_resource {
-      type   = "AWS::Lambda::Function"
-      values = var.lambda_invocation_logging_lambdas
-    }
-  }
 
   insight_selector {
     insight_type = "ApiCallRateInsight"
