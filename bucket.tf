@@ -161,7 +161,7 @@ data "aws_iam_policy_document" "audit_log_config" {
       sid = "AWSConfigBucketPermissionsCheckForMemberAccounts"
       principals {
         type        = "AWS"
-        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+        identifiers = [for account in statement.value : "arn:aws-us-gov:iam::${account.account_id}:root"]
       }
       actions   = ["s3:GetBucketAcl"]
       resources = [module.audit_log_bucket[0].this_bucket.arn]
@@ -175,7 +175,7 @@ data "aws_iam_policy_document" "audit_log_config" {
       sid = "AWSConfigBucketExistenceCheckForMemberAccounts"
       principals {
         type        = "AWS"
-        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+        identifiers = [for account in statement.value : "arn:aws-us-gov:iam::${account.account_id}:root"]
       }
       actions   = ["s3:ListBucket", "s3:GetBucketLocation"]
       resources = [module.audit_log_bucket[0].this_bucket.arn]
@@ -189,7 +189,7 @@ data "aws_iam_policy_document" "audit_log_config" {
       sid = "AWSConfigBucketDeliveryForMemberAccounts"
       principals {
         type        = "AWS"
-        identifiers = [for account in statement.value : "arn:aws:iam::${account.account_id}:root"]
+        identifiers = [for account in statement.value : "arn:aws-us-gov:iam::${account.account_id}:root"]
       }
       actions   = ["s3:PutObject"]
       resources = [for account in statement.value : "${local.audit_log_config_destination}/AWSLogs/${account.account_id}/Config/*"]

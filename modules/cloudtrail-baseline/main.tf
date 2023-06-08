@@ -40,13 +40,13 @@ data "aws_iam_policy_document" "cloudwatch_delivery_policy" {
   statement {
     sid       = "AWSCloudTrailCreateLogStream2014110"
     actions   = ["logs:CreateLogStream"]
-    resources = ["arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"]
+    resources = ["arn:aws-us-gov:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"]
   }
 
   statement {
     sid       = "AWSCloudTrailPutLogEvents20141101"
     actions   = ["logs:PutLogEvents"]
-    resources = ["arn:aws:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"]
+    resources = ["arn:aws-us-gov:logs:${var.region}:${var.aws_account_id}:log-group:${aws_cloudwatch_log_group.cloudtrail_events[0].name}:log-stream:*"]
   }
 }
 
@@ -70,7 +70,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     principals {
       type = "AWS"
       identifiers = [
-        "arn:aws:iam::${var.aws_account_id}:root"
+        "arn:aws-us-gov:iam::${var.aws_account_id}:root"
       ]
     }
     actions   = ["kms:*"]
@@ -88,7 +88,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+      values   = ["arn:aws-us-gov:cloudtrail:*:${var.aws_account_id}:trail/*"]
     }
   }
 
@@ -121,7 +121,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+      values   = ["arn:aws-us-gov:cloudtrail:*:${var.aws_account_id}:trail/*"]
     }
   }
 
@@ -164,7 +164,7 @@ data "aws_iam_policy_document" "cloudtrail_key_policy" {
     condition {
       test     = "StringLike"
       variable = "kms:EncryptionContext:aws:cloudtrail:arn"
-      values   = ["arn:aws:cloudtrail:*:${var.aws_account_id}:trail/*"]
+      values   = ["arn:aws-us-gov:cloudtrail:*:${var.aws_account_id}:trail/*"]
     }
   }
 

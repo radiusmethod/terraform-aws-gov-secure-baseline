@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "config-sns-policy" {
     condition {
       test     = "ArnLike"
       variable = "aws:SourceArn"
-      values   = ["arn:aws:config:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
+      values   = ["arn:aws-us-gov:config:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"]
     }
   }
 }

@@ -43,23 +43,8 @@ variable "target_regions" {
   description = "A list of regions to set up with this module."
   type        = list(string)
   default = [
-    "ap-northeast-1",
-    "ap-northeast-2",
-    "ap-northeast-3",
-    "ap-south-1",
-    "ap-southeast-1",
-    "ap-southeast-2",
-    "ca-central-1",
-    "eu-central-1",
-    "eu-north-1",
-    "eu-west-1",
-    "eu-west-2",
-    "eu-west-3",
-    "sa-east-1",
-    "us-east-1",
-    "us-east-2",
-    "us-west-1",
-    "us-west-2"
+    "us-gov-west-1",
+    "us-gov-east-1"
   ]
 }
 
@@ -398,19 +383,19 @@ variable "cloudtrail_s3_key_prefix" {
 variable "cloudtrail_s3_object_level_logging_buckets" {
   description = "The list of S3 bucket ARNs on which to enable object-level logging."
   type        = list(string)
-  default     = ["arn:aws:s3:::"] # All S3 buckets
+  default     = ["arn:aws-us-gov:s3:::"] # All S3 buckets
 }
 
 variable "cloudtrail_dynamodb_event_logging_tables" {
   description = "The list of DynamoDB table ARNs on which to enable event logging."
   type        = list(string)
-  default     = ["arn:aws:dynamodb"] # All DynamoDB tables
+  default     = ["arn:aws-us-gov:dynamodb"] # All DynamoDB tables
 }
 
 variable "cloudtrail_lambda_invocation_logging_lambdas" {
   description = "The list of lambda ARNs on which to enable invocation logging."
   type        = list(string)
-  default     = ["arn:aws:lambda"] # All lambdas
+  default     = ["arn:aws-us-gov:lambda"] # All lambdas
 }
 
 # --------------------------------------------------------------------------------------------------

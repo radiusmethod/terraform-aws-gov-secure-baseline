@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "alarms-sns-policy" {
     condition {
       test     = "ArnLike"
       variable = "AWS:SourceArn"
-      values   = ["arn:aws:cloudwatch:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alarm:*"]
+      values   = ["arn:aws-us-gov:cloudwatch:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:alarm:*"]
     }
   }
 }

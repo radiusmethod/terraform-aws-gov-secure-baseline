@@ -6,5 +6,5 @@ variable "audit_s3_bucket_name" {
 variable "region" {
   description = "The AWS region in which global resources are set up."
   type        = string
-  default     = "us-east-1"
+  default     = "us-gov-west-1"
 }

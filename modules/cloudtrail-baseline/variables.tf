@@ -88,19 +88,19 @@ variable "is_organization_trail" {
 variable "s3_object_level_logging_buckets" {
   description = "The list of S3 bucket ARNs on which to enable object-level logging."
   type        = list(string)
-  default     = ["arn:aws:s3:::"] # All S3 buckets
+  default     = ["arn:aws-us-gov:s3:::"] # All S3 buckets
 }
 
 variable "dynamodb_event_logging_tables" {
   description = "The list of DynamoDB table ARNs on which to enable event logging."
   type        = list(string)
-  default     = ["arn:aws:dynamodb"] # All DynamoDB tables
+  default     = ["arn:aws-us-gov:dynamodb"] # All DynamoDB tables
 }
 
 variable "lambda_invocation_logging_lambdas" {
   description = "The list of lambda ARNs on which to enable invocation logging."
   type        = list(string)
-  default     = ["arn:aws:lambda"] # All lambdas
+  default     = ["arn:aws-us-gov:lambda"] # All lambdas
 }
 
 variable "tags" {
