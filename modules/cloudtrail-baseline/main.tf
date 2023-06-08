@@ -235,7 +235,7 @@ resource "aws_cloudtrail" "global" {
   cloud_watch_logs_role_arn     = var.cloudwatch_logs_enabled ? aws_iam_role.cloudwatch_delivery[0].arn : null
   enable_log_file_validation    = true
   include_global_service_events = true
-  is_multi_region_trail         = true
+  is_multi_region_trail         = false # TODO: GovCloud Doesn't support multi region
   is_organization_trail         = var.is_organization_trail
   kms_key_id                    = aws_kms_key.cloudtrail.arn
   s3_bucket_name                = var.s3_bucket_name

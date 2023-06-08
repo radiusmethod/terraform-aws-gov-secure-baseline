@@ -87,8 +87,16 @@ resource "aws_s3_bucket" "content" {
 }
 
 resource "aws_s3_bucket_acl" "content" {
+  bucket     = aws_s3_bucket.content.id
+  acl        = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.content]
+}
+
+resource "aws_s3_bucket_ownership_controls" "content" {
   bucket = aws_s3_bucket.content.id
-  acl    = "private"
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "content" {
