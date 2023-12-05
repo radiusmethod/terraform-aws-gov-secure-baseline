@@ -1,4 +1,4 @@
-# terraform-aws-secure-baseline
+# terraform-aws-gov-secure-baseline
 
 [![Github Actions](https://github.com/nozaq/terraform-aws-secure-baseline/actions/workflows/main.yml/badge.svg)](https://github.com/nozaq/terraform-aws-secure-baseline/actions/workflows/main.yml)
 [![Releases](https://img.shields.io/github/v/release/nozaq/terraform-aws-secure-baseline)](https://github.com/nozaq/terraform-aws-secure-baseline/releases/latest)
@@ -48,7 +48,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 module "secure_baseline" {
-  source = "nozaq/secure-baseline/aws"
+  source = "github.com/radiusmethod/terraform-aws-gov-secure-baseline"
 
   audit_log_bucket_name           = "YOUR_BUCKET_NAME"
   aws_account_id                  = data.aws_caller_identity.current.account_id
